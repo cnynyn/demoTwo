@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!-- mybatis提供资源引用标签 使用resource引入外部资源文件 -->
+	<properties resource="db.properties" />
+	<!-- mybatis的typeAliases定义别名 -->
+	<typeAliases>
+		<package name="com.mybatis.pojo" />
+	</typeAliases>
+	<environments default="development">
+		<environment id="development">
+			<!--jdbc事务管理，mybatis负责执行管理 -->
+			<transactionManager type="JDBC" />
+			<!-- jdbc数据源，mybatis负责管理 -->
+			<dataSource type="POOLED">
+				<property name="driver" value="${driver}" />
+				<property name="url" value="${url}" />
+				<property name="username" value="${username}" />
+				<property name="password" value="${password}" />
+			</dataSource>
+		</environment>
+	</environments>
+	<mappers>
+		<!-- mapper代理开发：批量扫描接口使用package,name填写接口包路径 包路径下面所有接口都被代理 -->
+		<package name="com.mybatis.dao"/>
+	</mappers>
+</configuration>
