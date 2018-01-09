@@ -3,15 +3,15 @@ package com.mybatis.pojo;
 import java.util.List;
 
 public class QueryVo {
-	
+
 	private User user;
-	
-	//自定义用户扩展类
+
+	// 自定义用户扩展类
 	private UserCustom userCustom;
-	
-	//传递多个用户id
+
+	// 传递多个用户id
 	private List<Integer> ids;
-	
+
 	public User getUser() {
 		return user;
 	}
@@ -35,7 +35,5 @@ public class QueryVo {
 	public void setIds(List<Integer> ids) {
 		this.ids = ids;
 	}
-
-
 
 }

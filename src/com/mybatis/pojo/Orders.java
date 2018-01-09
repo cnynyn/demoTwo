@@ -4,61 +4,61 @@ import java.util.Date;
 import java.util.List;
 
 public class Orders {
-    private Integer id;
+	private Integer id;
 
-    private Integer userId;
+	private Integer userId;
 
-    private String number;
+	private String number;
 
-    private Date createtime;
+	private Date createtime;
 
-    private String note;
-    
-    //用户信息
-    private User user;
-    
-    //订单明细
-    private List<Orderdetail> orderdetails;
+	private String note;
 
-    public Integer getId() {
-        return id;
-    }
+	// 用户信息
+	private User user;
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	// 订单明细
+	private List<Orderdetail> orderdetails;
 
-    public Integer getUserId() {
-        return userId;
-    }
+	public Integer getId() {
+		return id;
+	}
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    public String getNumber() {
-        return number;
-    }
+	public Integer getUserId() {
+		return userId;
+	}
 
-    public void setNumber(String number) {
-        this.number = number == null ? null : number.trim();
-    }
+	public void setUserId(Integer userId) {
+		this.userId = userId;
+	}
 
-    public Date getCreatetime() {
-        return createtime;
-    }
+	public String getNumber() {
+		return number;
+	}
 
-    public void setCreatetime(Date createtime) {
-        this.createtime = createtime;
-    }
+	public void setNumber(String number) {
+		this.number = number == null ? null : number.trim();
+	}
 
-    public String getNote() {
-        return note;
-    }
+	public Date getCreatetime() {
+		return createtime;
+	}
 
-    public void setNote(String note) {
-        this.note = note == null ? null : note.trim();
-    }
+	public void setCreatetime(Date createtime) {
+		this.createtime = createtime;
+	}
+
+	public String getNote() {
+		return note;
+	}
+
+	public void setNote(String note) {
+		this.note = note == null ? null : note.trim();
+	}
 
 	public User getUser() {
 		return user;
@@ -82,6 +82,5 @@ public class Orders {
 				+ ", createtime=" + createtime + ", note=" + note + ", user="
 				+ user + ", orderdetails=" + orderdetails + "]";
 	}
-    
-    
+
 }

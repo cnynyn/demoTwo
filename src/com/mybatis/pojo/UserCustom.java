@@ -2,7 +2,7 @@ package com.mybatis.pojo;
 
 import java.util.Date;
 
-@SuppressWarnings({"serial","unused"})
+@SuppressWarnings({ "serial", "unused" })
 public class UserCustom extends User {
 
 	// 这里添加扩展字段
