@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--mapper中有很多sql语句，namespace是用来隔离sql语句 
+代理开发：namespace有特殊的含义 :必须是接口的全类路径名 -->
+<mapper namespace="com.mybatis.dao.UserMapper">
+	<!-- resultMap：高级映射，查询结果集映射到javabean
+	 type:把查询结果集映射到那个对象，Orders对象
+	 id：resultMap唯一标识 -->
+	<resultMap type="user" id="BaseUserMap">
+		<id column="id" property="id"/>
+		<result column="username" property="username"/>
+		<result column="birthday" property="birthday"/>
+		<result column="sex" property="sex"/>
+		<result column="address" property="address"/>
+		<!-- 配置一对多的映射关系 -->
+		<collection property="orders" ofType="Orders">
+			<result column="user_id" property="userId"/>
+			<result column="number" property="number"/>
+			<result column="note" property="note"/>
+			<!-- 一个订单有多个订单明细，使用collection集合映射进行配置一对多的关系 -->
+			<collection property="orderdetails" ofType="Orderdetail">
+				<id column="orderdetail_id" property="id"/>
+				<result column="orders_id" property="ordersId"/>
+				<result column="items_id" property="itemsId"/>
+				<!-- 一个订单明细有一个商品，使用association进行一对一的关系映射配置 -->
+				<association property="items" javaType="Items">
+					<id column="itemsId" property="id"/>
+					<result column="name" property="name"/>
+					<result column="price" property="price"/>
+					<result column="detail" property="detail"/>
+					<result column="pic" property="pic"/>
+					<result column="createtime" property="createtime"/>
+				</association>
+			</collection>
+		</collection>
+	</resultMap>
+
+	<select id="findUserAndOrdersAndOrderdetail" resultMap="BaseUserMap">
+		SELECT
+			user.*,
+			orders.user_id,orders.number,orders.note,
+			orderdetail.id orderdetail_id,orderdetail.orders_id,
+			orderdetail.items_id,orderdetail.items_num,
+			items.id itemsId,items.name,items.price,
+			items.detail,items.pic,items.createtime
+		FROM
+			orders,
+			user,
+			orderdetail,
+			items
+		WHERE
+			user.id = orders.user_id
+		AND orders.id = orderdetail.orders_id
+		AND orderdetail.items_id = items.id
+	</select>
+	
+	<insert id="addUser" parameterType="user" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO user VALUES(#{id},#{username},#{birthday},#{sex},#{address})
+	</insert>
+	
+	<select id="findUserById" parameterType="int" resultType="user">
+		select * from user where id = #{id}
+	</select>
+</mapper>
