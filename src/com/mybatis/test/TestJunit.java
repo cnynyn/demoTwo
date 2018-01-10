@@ -102,6 +102,14 @@ public class TestJunit {
 	}
 	
 	@Test
+	public void findUserById(){
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+		User user = mapper.findUserById(28);
+		System.out.println(user);
+	}
+	
+	@Test
 	public void test(){
 		System.out.println(new Date()+"\t"+UUID.randomUUID().toString());
 		System.out.println(UUID.randomUUID().toString().trim().replaceAll("-", ""));

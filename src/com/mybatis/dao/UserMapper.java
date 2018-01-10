@@ -11,5 +11,5 @@ public interface UserMapper {
 
 	public void addUser(User user);
 
-	public List<User> findUserById(int id);
+	public User findUserById(int id);
 }
