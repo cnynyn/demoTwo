@@ -107,10 +107,31 @@ public class TestJunit {
 		UserMapper mapper = sqlSession.getMapper(UserMapper.class);
 		User user = mapper.findUserById(28);
 		System.out.println(user);
+		sqlSession.commit();// 可测试一级缓存、事务
+		User user2 = mapper.findUserById(28);
+		System.out.println(user2);
+	}
+	
+	/**
+	 * 测试二级缓存
+	 */
+	@Test
+	public void findUserByIdTwoCache(){
+		SqlSession sqlSession1 = sqlSessionFactory.openSession();
+		UserMapper mapper1 = sqlSession1.getMapper(UserMapper.class);
+		User user1 = mapper1.findUserById(28);
+		System.out.println(user1+"\n关闭sqlSession当前时间:\t"+new Date());
+		sqlSession1.commit();// 可测试一级缓存、事务
+		sqlSession1.close();
+		
+		SqlSession sqlSession2 = sqlSessionFactory.openSession();
+		UserMapper mapper2 = sqlSession2.getMapper(UserMapper.class);
+		User user2 = mapper2.findUserById(28);
+		System.out.println(user2);
 	}
 	
 	@Test
-	public void test(){
+	public void testTime(){
 		System.out.println(new Date()+"\t"+UUID.randomUUID().toString());
 		System.out.println(UUID.randomUUID().toString().trim().replaceAll("-", ""));
 		System.out.println(new Random().nextBoolean() );

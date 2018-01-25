@@ -5,6 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <!--mapper中有很多sql语句，namespace是用来隔离sql语句 
 代理开发：namespace有特殊的含义 :必须是接口的全类路径名 -->
 <mapper namespace="com.mybatis.dao.UserMapper">
+	<cache/>
 	<!-- resultMap：高级映射，查询结果集映射到javabean
 	 type:把查询结果集映射到那个对象，Orders对象
 	 id：resultMap唯一标识 -->
@@ -60,7 +61,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		INSERT INTO user VALUES(#{id},#{username},#{birthday},#{sex},#{address})
 	</insert>
 	
-	<select id="findUserById" parameterType="int" resultType="user">
+	<select id="findUserById" parameterType="int" resultType="user" useCache="false">
 		select * from user where id = #{id}
 	</select>
 </mapper>

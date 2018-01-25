@@ -5,6 +5,14 @@
 <configuration>
 	<!-- mybatis提供资源引用标签 使用resource引入外部资源文件 -->
 	<properties resource="db.properties" />
+
+	<settings>
+		<setting name="cacheEnabled" value="true"/>
+		<!-- 开启延迟加载 -->
+		<setting name="lazyLoadingEnabled" value="true" />
+		<!-- 把属性按需加载 -->
+		<setting name="aggressiveLazyLoading" value="false" />
+	</settings>
 	<!-- mybatis的typeAliases定义别名 -->
 	<typeAliases>
 		<package name="com.mybatis.pojo" />
@@ -24,6 +32,6 @@
 	</environments>
 	<mappers>
 		<!-- mapper代理开发：批量扫描接口使用package,name填写接口包路径 包路径下面所有接口都被代理 -->
-		<package name="com.mybatis.dao"/>
+		<package name="com.mybatis.dao" />
 	</mappers>
 </configuration>
